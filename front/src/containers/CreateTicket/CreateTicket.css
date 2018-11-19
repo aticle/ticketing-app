@@ -1,0 +1,18 @@
+.create-ticket-form {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.create-ticket-form>div {
+    margin: 5px 0;
+    display: flex;
+    width: 300px;
+    max-width: 100%;
+    text-align: left;
+}
+
+.create-ticket-form button[type="submit"] {
+    margin-top: 65px;
+}
