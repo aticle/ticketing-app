@@ -1,4 +1,4 @@
-const Ticket = require('../models/ticket.model');
+const Ticket = require('../models/ticket');
 
 // Update ticket
 module.exports = (req, res) => {

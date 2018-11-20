@@ -16,7 +16,7 @@ describe('GET TICKET', () => {
 
     it('should return ticket by id', (done) => {
         request(app)
-            .get('/ticket/find/1')
+            .get('/tickets/find/1')
             .expect(200, (req, res) => {
                 expect(Array.isArray(res.body)).toBe(true);
                 done();

@@ -20,7 +20,7 @@ describe('PUT TICKET', () => {
             description: "Modified description"
         };
         request(app)
-            .put('/ticket/update/1')
+            .put('/tickets/update/1')
             .send(editedTicket)
             .expect(200)
             .end((err, res) => {

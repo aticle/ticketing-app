@@ -16,7 +16,7 @@ describe('POST TICKET', () => {
 
     it('should create a ticket', (done) => {
         request(app)
-            .post('/ticket/create')
+            .post('/tickets/create')
             .send({
                 id: 1,
                 status: 'OPEN',
