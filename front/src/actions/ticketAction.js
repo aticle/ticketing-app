@@ -6,14 +6,18 @@ import { type TicketState } from '../components/Ticket/Ticket';
 export const createTicket = (ticket: TicketState): TicketAction => {
     return {
         type: actionTypes.CREATE_NEW_TICKET,
-        ticket
+        payload: {
+            ticket
+        }
     };
 };
 
 export const deleteTicket = (id: number): TicketAction => {
     return {
         type: actionTypes.DELETE_TICKET,
-        id
+        payload: {
+            id
+        }
     };
 };
 
@@ -21,6 +25,8 @@ export const deleteTicket = (id: number): TicketAction => {
 export const editTicket = (id: number): TicketAction => {
     return {
         type: actionTypes.EDIT_TICKET,
-        id
+        payload: {
+            id
+        }
     };
 };

@@ -13,21 +13,21 @@ describe('ticketActions works properly', () => {
     it('createTicket returns correct value', () => {
         expect(createTicket(ticket)).toEqual({
             type: actionTypes.CREATE_NEW_TICKET,
-            ticket
+            payload: { ticket }
         });
     });
 
     it('deleteTicket returns correct value', () => {
         expect(deleteTicket(ticket.id)).toEqual({
             type: actionTypes.DELETE_TICKET,
-            id: ticket.id
+            payload: { id: ticket.id }
         });
     });
 
     it('editTicket return correct value', () => {
         expect(editTicket(ticket.id)).toEqual({
             type: actionTypes.EDIT_TICKET,
-            id: ticket.id
+            payload: { id: ticket.id }
         });
     });
 });
