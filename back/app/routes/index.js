@@ -1,18 +1,10 @@
-const TicketCtrl = require('../controllers');
+const passport = require('passport');
+const secured = require('../../lib/middleware/secured');
+var express = require('express');
+var router = express.Router();
 
-module.exports = (app) => {
-    // Get all tickets
-    app.get('/tickets', TicketCtrl.GetTickets);
+router.get('/', (req, res, next) => {
+    res.status(200).send({ title: 'Auth0 Webapp sample Nodejs' });
+});
 
-    // Get a ticket by ID
-    app.get('/ticket/find/:id', TicketCtrl.GetTicket);
-
-    // Create new ticket
-    app.post('/ticket/create', TicketCtrl.PostTicket);
-
-    // Delete a ticket by ID
-    app.delete('/ticket/delete/:id', TicketCtrl.DeleteTicket);
-
-    // Update a ticket by ID
-    app.put('/ticket/update/:id', TicketCtrl.UpdateTicket);
-}
+module.exports = router;

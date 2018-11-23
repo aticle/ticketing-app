@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import actionTypes from '../../actions/actionTypes'
-import CreateTicket, { mapStateToProps, mapDispatchToProps } from './CreateTicket';
+import CreateTicket, { mapStateToProps, mapDispatchToProps } from './TicketForm';
 
 describe('<CreateTicket />', () => {
     it('renders correctly', () => {

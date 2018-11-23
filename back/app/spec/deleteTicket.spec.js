@@ -16,7 +16,7 @@ describe('DELETE TICKET', () => {
 
     it('should delete a ticket', (done) => {
         request(app)
-            .delete('/ticket/delete/0')
+            .delete('/tickets/delete/0')
             .expect(200)
             .end((err, res) => {
                 if (err) {
