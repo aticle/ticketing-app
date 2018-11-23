@@ -3,7 +3,7 @@ const axios = require('axios');
 const sinon = require('sinon');
 const mongoose = require('mongoose');
 
-describe('app', () => {
+describe('server', () => {
     it('GET /', () => {
 
         axios.get(`${baseRoot}:${port}/tickets`, (error, resp, body) => {

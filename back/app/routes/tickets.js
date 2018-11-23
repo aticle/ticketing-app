@@ -15,6 +15,6 @@ router.post('/create', handler.PostTicket);
 router.delete('/delete/:id', handler.DeleteTicket);
 
 // Update a ticket by ID
-router.put('/update/:id', handler.UpdateTicket);
+router.put('/update/:_id', handler.UpdateTicket);
 
 module.exports = router;

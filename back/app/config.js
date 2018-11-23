@@ -22,6 +22,18 @@ const configSession = {
     saveUninitialized: true
 };
 
+// CORS
+const whitelist = ['http://localhost:3000'];
+const corsOptions = {
+    origin: (origin, cb) => {
+        if (whitelist.indexOf(origin) !== -1) {
+            cb(null, true);
+        } else {
+            cb(new Error('Not allowed by CORS'));
+        }
+    }
+};
+
 module.exports = {
     port,
     baseRoot,

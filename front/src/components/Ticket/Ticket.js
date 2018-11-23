@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from 'react';
-
 import './Ticket.css';
 
 export const Status = {
@@ -14,7 +13,8 @@ export type TicketState = {
     id: number,
     status: string,
     title: string,
-    description: string
+    description: string,
+    _id?: string
 };
 export type TicketProps = {
     id: number,

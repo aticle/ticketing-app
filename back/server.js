@@ -1,30 +1,38 @@
 // Imports
 const express = require('express');
-const secured = require('../lib/middleware/secured');
-const userInViews = require('../lib/middleware/userInViews');
 const session = require('express-session');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
-const { baseRoot, port, db, dbConnectionOptions, strategy, configSession } = require('./config');
-const Ticket = require('./models/ticket');
+const cors = require('cors');
+
+const {
+    baseRoot, port,
+    db, dbConnectionOptions,
+    strategy, configSession,
+    corsOptions
+} = require('./app/config');
+const Ticket = require('./app/models/ticket');
+const secured = require('./lib/middleware/secured');
+const userInViews = require('./lib/middleware/userInViews');
 // routes
-const authRouter = require('./routes/auth');
-const usersRouter = require('./routes/users');
-const indexRouter = require('./routes/index');
-const ticketsRouter = require('./routes/tickets');
+const authRouter = require('./app/routes/auth');
+const usersRouter = require('./app/routes/users');
+const indexRouter = require('./app/routes/index');
+const ticketsRouter = require('./app/routes/tickets');
 
 // DB connect
 mongoose.connect(db, dbConnectionOptions);
 mongoose.connection.on('connected', () => {
-    console.log('Mongoose connected to DB yaayyy :D');
+    console.log('Mongoose connected to DB');
 });
 
 // App 
 const app = express();
 
+app.use(cors(corsOptions));
 app.use(session(configSession));
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({ 'extended': 'true' }));         // parse application/x-www-form-urlencoded
@@ -55,7 +63,4 @@ app.listen(port, (err) => {
 });
 
 passport.serializeUser((user, done) => done(null, user));
-
 passport.deserializeUser((user, done) => done(null, user));
-
-module.exports = app;

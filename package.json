@@ -5,6 +5,9 @@
   "description": "like JIRA (with react)",
   "main": "index.js",
   "scripts": {
+    "client": "cd front && npm start",
+    "server": "nodemon back/server.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +21,11 @@
   },
   "homepage": "https://github.com/aticle/ticketing-app#readme",
   "dependencies": {
-    "create-react-app": "^2.1.1"
+    "create-react-app": "^2.1.1",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "concurrently": "^4.0.1"
   }
 }

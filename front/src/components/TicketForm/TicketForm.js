@@ -3,18 +3,19 @@ import React, { Component } from 'react';
 import { connect, type Dispatch } from 'react-redux';
 import { TextField, Button } from '@material-ui/core';
 
-import { type TicketState, Status } from '../../components/Ticket/Ticket';
+import { type TicketState, Status } from '../Ticket/Ticket';
 import { createTicket } from '../../actions/ticketAction';
 import type { State } from '../../reducers';
 
-import './CreateTicket.css';
+import './TicketForm.css';
 
 type Props = {
     createTicket: Dispatch,
-    tickets: Array<TicketState>
+    tickets: Array<TicketState>,
+    ticket: TicketState
 }
 
-class CreateTicket extends Component<Props, TicketState> {
+class TicketForm extends Component<Props, TicketState> {
     state = {
         id: 0,
         status: Status.OPEN,
@@ -93,4 +94,4 @@ export const mapDispatchToProps = (dispatch: Dispatch) => {
         createTicket: (ticket: TicketState) => dispatch(createTicket(ticket))
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(CreateTicket);
+export default connect(mapStateToProps, mapDispatchToProps)(TicketForm);

@@ -5,12 +5,12 @@ import './App.css';
 
 import MenuAppBar from './components/MenuAppBar/MenuAppBar';
 import TicketsList from './components/TicketsList/TicketsList';
-import CreateTicket from './containers/CreateTicket/CreateTicket';
+import TicketForm from './components/TicketForm/TicketForm';
 
 const App = () => (
   <div className="App">
     <MenuAppBar></MenuAppBar>
-    <CreateTicket />
+    <TicketForm ticket={undefined} />
     <TicketsList />
   </div>
 );
