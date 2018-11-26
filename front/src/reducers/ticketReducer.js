@@ -9,7 +9,7 @@ export default (state: Array<TicketState> = [], action: TicketAction) => {
         [actionTypes.CREATE_NEW_TICKET]:
             () => [
                 ...state,
-                Object.assign({}, action.payload && action.payload.request ? action.payload.request.data : {})
+                Object.assign({}, (action.payload && action.payload.request) ? action.payload.request.data : {})
             ],
         [actionTypes.GET_ALL_TICKETS_SUCCESS]:
             () => state.concat(action.payload ? action.payload.data : []),

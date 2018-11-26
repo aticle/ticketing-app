@@ -74,13 +74,13 @@ class TicketsList extends Component<TicketsListProps, TicketsListState> {
         return (
             <div
                 style={{
-                    height: '300px',
+                    height: '500px',
                     width: '500px'
                 }}
                 className="ag-theme-balham">
                 <AgGridReact
                     suppressHorizontalScroll
-                    rowData={[...this.props.tickets]}
+                    rowData={this.props.tickets}
                     gridOptions={{
                         columnDefs: [
                             { headerName: "ID", field: "id" },
@@ -109,7 +109,7 @@ export const mapStateToProps = (state: State) => {
 };
 export const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        editTicket: (id: number, data: any) => dispatch(editTicket(id, data)),
+        editTicket: (_id: string, data: any) => dispatch(editTicket(_id, data)),
         deleteTicket: (id: number) => dispatch(deleteTicket(id))
     }
 }

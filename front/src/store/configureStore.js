@@ -11,7 +11,7 @@ export type State = {
 }
 export const devtoolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
-export default function configureStore(initialState?: State): Store {
+export default function configureStore(initialState: State = { tickets: [] }): Store {
     const client = axios.create({
         baseURL: "http://localhost:3001/",
         responseType: 'json'

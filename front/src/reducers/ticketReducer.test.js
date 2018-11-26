@@ -10,21 +10,25 @@ describe('Tickets reducer', () => {
         //empty state, empty ticket
         expect(tickets([], {
             type: actionTypes.CREATE_NEW_TICKET,
-            ticket: undefined
+            payload: { request: { data: undefined } }
         })).toEqual([{}]);
 
         // empty state, complete ticket
         expect(tickets([], {
             type: actionTypes.CREATE_NEW_TICKET,
-            ticket: {
-                id: 0,
-                status: 0,
-                title: 'Title',
-                description: 'Description'
+            payload: {
+                request: {
+                    data: {
+                        id: 0,
+                        status: 'OPEN',
+                        title: 'Title',
+                        description: 'Description'
+                    }
+                }
             }
         })).toEqual([{
             id: 0,
-            status: 0,
+            status: 'OPEN',
             title: 'Title',
             description: 'Description'
         }]);
@@ -34,54 +38,62 @@ describe('Tickets reducer', () => {
             [
                 {
                     id: 0,
-                    status: 0,
+                    status: 'OPEN',
                     title: 'Title',
                     description: 'Description'
                 }
             ], {
                 type: actionTypes.CREATE_NEW_TICKET,
-                ticket: {
-                    id: 1,
-                    status: 2,
-                    title: 'Titleee',
-                    description: 'Descriptionee'
+                payload: {
+                    request: {
+                        data: {
+                            id: 1,
+                            status: 'OPEN',
+                            title: 'Titleee',
+                            description: 'Descriptionee'
+                        }
+                    }
                 }
             }
         )).toEqual([
             {
                 id: 0,
-                status: 0,
+                status: 'OPEN',
                 title: 'Title',
                 description: 'Description'
             }, {
                 id: 1,
-                status: 2,
+                status: 'OPEN',
                 title: 'Titleee',
                 description: 'Descriptionee'
             }
         ]);
     });
 
-    it('handles correctly DELETE_TICKET', () => {
+    it('handles correctly DELETE_TICKET_SUCCESS', () => {
         const state = [
             {
                 id: 0,
-                status: 0,
+                status: 'OPEN',
                 title: 'Title',
                 description: 'Description'
             }, {
                 id: 1,
-                status: 2,
+                status: 'OPEN',
                 title: 'Titleee',
                 description: 'Descriptionee'
             }
         ];
+        const id = 1;
+        const url = '/delete/' + id;
         const action = {
-            type: actionTypes.DELETE_TICKET,
-            id: 1
+            type: actionTypes.DELETE_TICKET_SUCCESS,
+            payload: {
+                config: { url }
+            }
         }
         expect(tickets(state, action)).toEqual(
-            state.filter(t => t.id !== action.id)
+            state.filter(t => t.id !== id)
         );
     });
 });

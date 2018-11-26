@@ -1,16 +1,16 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import actionTypes from '../../actions/actionTypes'
-import CreateTicket, { mapStateToProps, mapDispatchToProps } from './TicketForm';
+import TicketForm, { mapStateToProps, mapDispatchToProps } from './TicketForm';
 
-describe('<CreateTicket />', () => {
+describe('<TicketForm />', () => {
     it('renders correctly', () => {
-        const createTicket = shallow(<CreateTicket.WrappedComponent />);
+        const createTicket = shallow(<TicketForm.WrappedComponent />);
         expect(createTicket).toMatchSnapshot();
     });
 
     it('handles correctly onChange', () => {
-        const createTicket = shallow(<CreateTicket.WrappedComponent />);
+        const createTicket = shallow(<TicketForm.WrappedComponent />);
 
         // ID
         const idValue = 5;
@@ -61,7 +61,13 @@ describe('<CreateTicket />', () => {
         mapDispatchToProps(dispatch).createTicket(ticket);
         expect(dispatch.mock.calls[0][0]).toEqual({
             type: actionTypes.CREATE_NEW_TICKET,
-            ticket
+            payload: {
+                request: {
+                    data: ticket,
+                    method: "post",
+                    url: "/tickets/create"
+                }
+            }
         });
     });
 
@@ -81,7 +87,7 @@ describe('<CreateTicket />', () => {
         const event = { preventDefault: () => { } };
         const dispatch = jest.fn();
         const props = { ...mapDispatchToProps(dispatch), ...mapStateToProps({ tickets: [] }) };
-        const createTicketWrap = shallow(<CreateTicket.WrappedComponent {...props} />);
+        const createTicketWrap = shallow(<TicketForm.WrappedComponent {...props} />);
         const ticket = {
             id: 6,
             title: 'bla',
@@ -90,12 +96,12 @@ describe('<CreateTicket />', () => {
         };
         expect(createTicketWrap.find('form')).toHaveLength(1);
         createTicketWrap.setState({
+            ...createTicketWrap.state,
             id: 6,
             title: 'bla',
             description: 'bla bla bla'
         });
         createTicketWrap.find('form').simulate('submit', event);
-        expect(dispatch.mock.calls[0][0].ticket).toEqual(ticket);
         expect(createTicketWrap.state()).toEqual({
             id: ticket.id + 1,
             title: '',
