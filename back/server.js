@@ -9,20 +9,22 @@ const cors = require('cors');
 
 const {
     baseRoot, port,
-    db, dbConnectionOptions,
+    db, usersDb, dbConnectionOptions,
     corsOptions
 } = require('./app/config');
 const Ticket = require('./app/models/ticket');
+// middleware
 const secured = require('./lib/middleware/secured');
 const userInViews = require('./lib/middleware/userInViews');
 // routes
 const indexRouter = require('./app/routes/index');
 const ticketsRouter = require('./app/routes/tickets');
+const userRouter = require('./app/routes/user');
 
 // DB connect
 mongoose.connect(db, dbConnectionOptions);
 mongoose.connection.on('connected', () => {
-    console.log('Mongoose connected to DB');
+    console.log('Mongoose connected to tickets DB');
 });
 
 // App 
@@ -39,6 +41,7 @@ app.use(methodOverride());
 app.use(userInViews());
 app.use('/', indexRouter);
 app.use('/tickets', ticketsRouter);
+app.use('/users', userRouter);
 
 // Server
 app.listen(port, (err) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import store from './store';
@@ -10,6 +10,7 @@ import './index.css';
 import TicketForm from './components/TicketForm/TicketForm';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
+import Protected from './components/Protected/Protected';
 
 ReactDOM.render(
     <Provider store={store}>
@@ -19,6 +20,9 @@ ReactDOM.render(
                 <Route path="/" exact component={TicketsList} />
                 <Route path="/create" exact component={TicketForm} />
                 <Route path="/login" exact component={Login} />
+                {/* <Register>
+                    <Route path="/protected" component={Protected}></Route>
+                </Register> */}
                 <Route path="/register" exact component={Register} />
             </div>
         </Router>

@@ -1,14 +1,24 @@
 // @flow
 import React, { Component } from 'react';
 import { TextField, Button } from '@material-ui/core';
+import { connect, type Dispatch } from 'react-redux';
+import { withRouter, RouterHistory } from 'react-router-dom';
+import { registerUser } from '../../actions/authAction';
+import { getJwt } from '../../helpers/jwt';
+import { type User } from '../../actions/authAction';
 import './Register.css';
 
-type Props = {};
+type Props = {
+    registerUser: Dispatch,
+    errors: Array<Error>,
+    history: RouterHistory
+};
 type State = {
     name: string,
     email: string,
     password: string,
-    password_confirm: string
+    password_confirm: string,
+    errors: Object
 };
 
 class Register extends Component<Props, State> {
@@ -16,7 +26,8 @@ class Register extends Component<Props, State> {
         name: '',
         email: '',
         password: '',
-        password_confirm: ''
+        password_confirm: '',
+        errors: {}
     };
 
     handleChange = (name: string) => (e: SyntheticEvent<HTMLInputElement>) => {
@@ -28,11 +39,22 @@ class Register extends Component<Props, State> {
         });
     }
 
+    handleSubmit = (e: Event) => {
+        e.preventDefault();
+        const user = {
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password,
+            password_confirm: this.state.password_confirm
+        }
+        this.props.registerUser(user, this.props.history);
+    }
+
     render() {
         const { name, email, password, password_confirm } = this.state;
 
         return (
-            <form className="login">
+            <form className="login" onSubmit={this.handleSubmit}>
                 <h2>Register</h2>
                 <TextField
                     label="full name"
@@ -74,5 +96,18 @@ class Register extends Component<Props, State> {
             </form>
         );
     };
-}
-export default Register;
+};
+
+const mapDispatchToProps = (dispatch: Dispatch) => {
+    return {
+        registerUser: (user: User, history: RouterHistory) => registerUser(user, history)(dispatch)
+    }
+};
+
+const mapStateToProps = (state: State) => {
+    return {
+        errors: state.errors
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Register));

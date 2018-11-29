@@ -4,6 +4,8 @@ const DeleteTicket = require('./DeleteTicket');
 const GetTicket = require('./GetTicket');
 const UpdateTicket = require('./UpdateTicket');
 const CreateUser = require('./CreateUser');
+const LoginUser = require('./LoginUser');
+const GetUser = require('./GetUser');
 
 module.exports = {
     GetTickets: GetTickets,
@@ -12,5 +14,7 @@ module.exports = {
     GetTicket: GetTicket,
     UpdateTicket: UpdateTicket,
 
-    CreateUser: CreateUser
+    CreateUser: CreateUser,
+    LoginUser: LoginUser,
+    GetUser: GetUser
 };

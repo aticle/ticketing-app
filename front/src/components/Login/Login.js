@@ -1,18 +1,27 @@
 // @flow
 import React, { Component } from 'react';
+import { connect, type Dispatch } from 'react-redux';
+import { withRouter, RouterHistory } from 'react-router-dom';
 import { TextField, Button } from '@material-ui/core';
+import { loginUser } from '../../actions/authAction';
 import './Login.css';
 
-type Props = {};
+type Props = {
+    errors: Array<Error>,
+    loginUser: Dispatch,
+    history: RouterHistory
+};
 type State = {
-    user: string,
-    password: string
+    email: string,
+    password: string,
+    errors: Object
 };
 
 class Login extends Component<Props, State> {
     state = {
-        user: '',
-        password: ''
+        email: '',
+        password: '',
+        errors: {}
     };
 
     handleChange = (name: string) => (e: SyntheticEvent<HTMLInputElement>) => {
@@ -24,19 +33,37 @@ class Login extends Component<Props, State> {
         });
     }
 
+    handleSubmit = (e: Event) => {
+        e.preventDefault();
+        const user = {
+            email: this.state.email,
+            password: this.state.password,
+        }
+        this.props.loginUser(user, this.props.history);
+    }
+
+    // componentWillReceiveProps(nextProps) {
+
+    //     if(nextProps.errors) {
+    //         this.setState({
+    //             errors: nextProps.errors
+    //         });
+    //     }
+    // }
+
     render() {
-        const { user, password } = this.state;
+        const { email, password } = this.state;
 
         return (
-            <form className="login">
+            <form className="login" onSubmit={this.handleSubmit}>
                 <h2>Login</h2>
                 <TextField
-                    label="user"
-                    id="user"
+                    label="email"
+                    id="email"
                     type="email"
-                    value={user}
+                    value={email}
                     required
-                    onChange={this.handleChange('user')}
+                    onChange={this.handleChange('email')}
                 ></TextField>
                 <TextField
                     label="password"
@@ -55,4 +82,17 @@ class Login extends Component<Props, State> {
         );
     };
 }
-export default Login;
+
+const mapDispatchToProps = (dispatch: Dispatch) => {
+    return {
+        loginUser: (user: any) => loginUser(user)(dispatch)
+    }
+};
+
+const mapStateToProps = (state: State) => {
+    return {
+        errors: state.errors
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login));
