@@ -7,7 +7,7 @@ export type TicketAction = {
     payload: {
         ticket?: TicketState,
         id?: number,
-        data?: Array<TicketState>,
+        data?: Array<TicketState> | TicketState,
         request?: {
             method: string,
             url?: string,
@@ -33,13 +33,13 @@ export const createTicket = (ticket: TicketState): TicketAction => {
     };
 };
 
-export const deleteTicket = (id: string): TicketAction => {
+export const deleteTicket = (_id: string): TicketAction => {
     return {
         type: actionTypes.DELETE_TICKET,
         payload: {
             request: {
                 method: 'delete',
-                url: `/tickets/delete/${id}`
+                url: `/tickets/delete/${_id}`
             }
         }
     };

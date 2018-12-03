@@ -4,7 +4,6 @@ import { TextField, Button } from '@material-ui/core';
 import { connect, type Dispatch } from 'react-redux';
 import { withRouter, RouterHistory } from 'react-router-dom';
 import { registerUser } from '../../actions/authAction';
-import { getJwt } from '../../helpers/jwt';
 import { type User } from '../../actions/authAction';
 import './Register.css';
 

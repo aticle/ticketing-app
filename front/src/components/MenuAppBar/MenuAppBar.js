@@ -37,7 +37,7 @@ class MenuAppBar extends Component<Props, MenuState> {
 
     render() {
         const { anchorEl } = this.state;
-        const { isAuthenticated, user } = this.props.auth;
+        const { isAuthenticated } = this.props.auth;
         const { logoutUser, history } = this.props;
 
         const guestLinks = (

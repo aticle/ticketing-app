@@ -13,10 +13,9 @@ export type TicketState = {
     status: string,
     title: string,
     description: string,
-    id?: string
+    _id?: string
 };
 export type TicketProps = {
-    id: string,
     status: string,
     title: string,
     description: string
