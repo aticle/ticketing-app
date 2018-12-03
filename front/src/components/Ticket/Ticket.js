@@ -10,14 +10,13 @@ export const Status = {
 };
 
 export type TicketState = {
-    id: number,
     status: string,
     title: string,
     description: string,
-    _id?: string
+    id?: string
 };
 export type TicketProps = {
-    id: number,
+    id: string,
     status: string,
     title: string,
     description: string
@@ -25,14 +24,13 @@ export type TicketProps = {
 
 export default class Ticket extends Component<TicketProps, TicketState> {
     state = {
-        id: 0,
         status: Status.OPEN,
         title: '',
         description: ''
     };
 
     render() {
-        const { title, description, status, id } = this.state;
+        const { title, description, status } = this.state;
 
         return (
             <article>
@@ -41,7 +39,6 @@ export default class Ticket extends Component<TicketProps, TicketState> {
                     <i>Description: </i><br />
                     <p>{description}</p>
                 </h3>
-                <p><b>ID: </b>{id}</p>
                 <p><b>Status: </b>{status}</p>
             </article>
         );

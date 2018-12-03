@@ -54,7 +54,7 @@ class TicketsList extends Component<TicketsListProps, TicketsListState> {
     onActionCellClick = ({ data }: CellClickedEvent) => {
         const handler = {
             delete: (data) => this.props.deleteTicket(data.id, { ...data, status: 'UPDATED@CLICK' }),
-            edit: (data) => this.props.editTicket(data._id, { ...data, status: 'UPDATED@CLICK' })
+            edit: (data) => this.props.editTicket(data.id, { ...data, status: 'UPDATED@CLICK' })
         };
         this.state.ticketAction && handler[this.state.ticketAction](data);
         this.setState({
@@ -83,7 +83,6 @@ class TicketsList extends Component<TicketsListProps, TicketsListState> {
                     rowData={this.props.tickets}
                     gridOptions={{
                         columnDefs: [
-                            { headerName: "ID", field: "id" },
                             { headerName: "Status", field: "status" },
                             { headerName: "Title", field: "title" },
                             { headerName: "Description", field: "description" },
@@ -109,8 +108,8 @@ export const mapStateToProps = (state: State) => {
 };
 export const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        editTicket: (_id: string, data: any) => dispatch(editTicket(_id, data)),
-        deleteTicket: (id: number) => dispatch(deleteTicket(id))
+        editTicket: (id: string, data: any) => dispatch(editTicket(id, data)),
+        deleteTicket: (id: string) => dispatch(deleteTicket(id))
     }
 }
 

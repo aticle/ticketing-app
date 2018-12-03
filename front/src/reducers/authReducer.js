@@ -12,8 +12,8 @@ export type AuthState = {
 }
 
 const initialState: AuthState = {
-    isAuthenticated: false,
-    user: {}
+    isAuthenticated: undefined,
+    user: undefined
 }
 
 export default (state: AuthState = initialState, action: Action) => {

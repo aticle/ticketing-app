@@ -26,7 +26,7 @@ export default (state: Array<TicketState> = [], action: TicketAction) => {
             const data = action.payload.config ? action.payload.config.data : '{}';
             const updatedTicket = JSON.parse(data);
             return state.map(ticket => {
-                if (ticket._id === updatedTicket._id) {
+                if (ticket.id === updatedTicket.id) {
                     return Object.assign({}, ticket, updatedTicket)
                 } else return ticket;
             })

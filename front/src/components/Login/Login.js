@@ -37,8 +37,9 @@ class Login extends Component<Props, State> {
         e.preventDefault();
         const user = {
             email: this.state.email,
-            password: this.state.password,
+            password: this.state.password
         }
+        console.log("%%%%", this.props.history);
         this.props.loginUser(user, this.props.history);
     }
 
@@ -85,7 +86,7 @@ class Login extends Component<Props, State> {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        loginUser: (user: any) => loginUser(user)(dispatch)
+        loginUser: (user: any, history: RouterHistory) => loginUser(user, history)(dispatch)
     }
 };
 

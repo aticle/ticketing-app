@@ -33,7 +33,7 @@ export const createTicket = (ticket: TicketState): TicketAction => {
     };
 };
 
-export const deleteTicket = (id: number): TicketAction => {
+export const deleteTicket = (id: string): TicketAction => {
     return {
         type: actionTypes.DELETE_TICKET,
         payload: {
@@ -46,13 +46,13 @@ export const deleteTicket = (id: number): TicketAction => {
 };
 
 
-export const editTicket = (_id: string, ticket: TicketState): TicketAction => {
+export const editTicket = (id: string, ticket: TicketState): TicketAction => {
     return {
         type: actionTypes.EDIT_TICKET,
         payload: {
             request: {
                 method: 'put',
-                url: `/tickets/update/${_id}`,
+                url: `/tickets/update/${id}`,
                 data: ticket
             }
         }

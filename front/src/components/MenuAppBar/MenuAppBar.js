@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link, withRouter, RouterHistory } from "react-router-dom";
+import { Link, withRouter, RouterHistory } from "react-router-dom";
 import { connect, type Dispatch } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,8 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import './MenuAppBar.css';
-import Register from '../Register/Register';
-import { type User, logoutUser } from '../../actions/authAction';
+import { logoutUser } from '../../actions/authAction';
 import type { State } from '../../reducers';
 import type { AuthState } from '../../reducers/authReducer';
 
@@ -114,10 +113,8 @@ class MenuAppBar extends Component<Props, MenuState> {
 const mapStateToProps = (state: State) => ({
     auth: state.auth
 })
-const mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        logoutUser: (history: RouterHistory) => logoutUser(history)(dispatch)
-    }
-}
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    logoutUser: (history: RouterHistory) => logoutUser(history)(dispatch)
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MenuAppBar));
