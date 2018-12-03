@@ -9,13 +9,9 @@ const cors = require('cors');
 
 const {
     baseRoot, port,
-    db, usersDb, dbConnectionOptions,
-    corsOptions
+    db, dbConnectionOptions
 } = require('./app/config');
 const Ticket = require('./app/models/ticket');
-// middleware
-const secured = require('./lib/middleware/secured');
-const userInViews = require('./lib/middleware/userInViews');
 // routes
 const indexRouter = require('./app/routes/index');
 const ticketsRouter = require('./app/routes/tickets');
@@ -30,7 +26,7 @@ mongoose.connection.on('connected', () => {
 // App 
 const app = express();
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({ 'extended': 'true' }));         // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
@@ -38,7 +34,6 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse applica
 app.use(methodOverride());
 
 // Routes
-app.use(userInViews());
 app.use('/', indexRouter);
 app.use('/tickets', ticketsRouter);
 app.use('/users', userRouter);

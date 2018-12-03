@@ -52,9 +52,10 @@ class TicketsList extends Component<TicketsListProps, TicketsListState> {
     }
 
     onActionCellClick = ({ data }: CellClickedEvent) => {
+        // return console.log("@@@", data);
         const handler = {
-            delete: (data) => this.props.deleteTicket(data.id, { ...data, status: 'UPDATED@CLICK' }),
-            edit: (data) => this.props.editTicket(data.id, { ...data, status: 'UPDATED@CLICK' })
+            delete: (data) => this.props.deleteTicket(data._id, { ...data, status: 'UPDATED@CLICK' }),
+            edit: (data) => this.props.editTicket(data._id, { ...data, status: 'UPDATED@CLICK' })
         };
         this.state.ticketAction && handler[this.state.ticketAction](data);
         this.setState({

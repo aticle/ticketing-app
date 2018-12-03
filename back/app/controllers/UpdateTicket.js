@@ -4,10 +4,10 @@ const Ticket = require('../models/ticket');
 module.exports = (req, res) => {
     Ticket.updateOne(req.params, { $set: req.body }, (err, ticket) => {
         if (err) {
-            res.json("Something went wrong. Ticket couldn't be updated");
+            res.status(400).json("Something went wrong. Ticket couldn't be updated");
             return;
         }
-        res.json("Ticket updated!");
+        res.status(200).json("Ticket updated!");
     });
 
 };

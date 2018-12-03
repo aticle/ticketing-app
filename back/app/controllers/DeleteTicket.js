@@ -2,12 +2,12 @@ const Ticket = require('../models/ticket');
 
 // Delete ticket
 module.exports = (req, res) => {
-    Ticket.deleteMany(req.params, (err, { n, ok }) => {
+    Ticket.deleteOne(req.params, (err, res) => {
         if (err) {
-            res.json("Something went wrong. Ticket couldn't be deleted");
+            res.status(400).json("Something went wrong. Ticket couldn't be deleted");
             return;
         }
-        res.json("Ticket deleted!");
+        res.status(200).json("Ticket deleted!");
     });
 
 };

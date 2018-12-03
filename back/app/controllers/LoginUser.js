@@ -1,7 +1,9 @@
 const jwt = require('jsonwebtoken');
 const bcryptjs = require('bcryptjs');
+const axios = require('axios');
 const validateLoginInput = require('../validation/login');
 const User = require('../models/user');
+const { tokenSecret } = require('../../app/config');
 
 module.exports = (req, res) => {
     const { errors, isValid } = validateLoginInput(req.body);
@@ -22,17 +24,24 @@ module.exports = (req, res) => {
                     if (isMatch) {
                         const payload = {
                             name: user.name,
-                            email: user.email
+                            email: user.email,
+                            password: user.password
                         };
 
-                        jwt.sign(payload, 'secr', {
+                        jwt.sign(payload, tokenSecret, {
                             expiresIn: 3600
                         }, (err, token) => {
                             if (err) console.error('Error in token', err);
-                            else res.status(200).json({
-                                success: true,
-                                token: `Bearer ${token}`
-                            });
+                            else {
+                                // update user token
+                                axios.put('users/update', { token });
+
+                                // return token
+                                res.status(200).json({
+                                    success: true,
+                                    token: `Bearer ${token}`
+                                });
+                            }
                         });
                     } else {
                         errors.password = 'Incorrect Password';

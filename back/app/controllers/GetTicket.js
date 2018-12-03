@@ -4,9 +4,9 @@ const Ticket = require('../models/ticket');
 module.exports = (req, res) => {
     Ticket.find(req.params, (err, tickets) => {
         if (err) {
-            res.json("Something went wrong");
+            res.json(err);
             return;
         }
-        res.json(tickets);
+        res.status(200).json(tickets);
     });
 };
