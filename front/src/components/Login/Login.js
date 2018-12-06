@@ -39,18 +39,9 @@ class Login extends Component<Props, State> {
             email: this.state.email,
             password: this.state.password
         }
-        console.log("%%%%", this.props.history);
+
         this.props.loginUser(user, this.props.history);
     }
-
-    // componentWillReceiveProps(nextProps) {
-
-    //     if(nextProps.errors) {
-    //         this.setState({
-    //             errors: nextProps.errors
-    //         });
-    //     }
-    // }
 
     render() {
         const { email, password } = this.state;
@@ -84,13 +75,13 @@ class Login extends Component<Props, State> {
     };
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+export const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         loginUser: (user: any, history: RouterHistory) => loginUser(user, history)(dispatch)
     }
 };
 
-const mapStateToProps = (state: State) => {
+export const mapStateToProps = (state: State) => {
     return {
         errors: state.errors
     }

@@ -20,55 +20,37 @@ type TicketsListState = {
 
 type TicketsListProps = {
     tickets: Array<TicketState>,
-    editTicket: Dispatch,
     deleteTicket: Dispatch
 };
 
-const userPermissions = {
+export const userPermissions = {
     delete: true,
     edit: true
 };
 class TicketsList extends Component<TicketsListProps, TicketsListState> {
-    del = <div></div>;
-
     state = {
         columnDefs: [],
         rowData: [],
         ticketAction: null
     };
 
-    deleteTicket = () => {
-        this.setState({
-            ...this.state,
-            ticketAction: 'delete'
-        });
-    };
-
-    editTicket = () => {
-        this.setState({
-            ...this.state,
-            ticketAction: 'edit'
-        });
-    }
-
-    onActionCellClick = ({ data }: CellClickedEvent) => {
-        // return console.log("@@@", data);
+    ticketAction = (action: 'delete' | 'edit') => (e: SyntheticEvent<HTMLElement>) => {
+        const eId = e.currentTarget.id;
+        const id = eId.split(action)[0];
         const handler = {
-            delete: (data) => this.props.deleteTicket(data._id),
-            edit: (data) => this.props.editTicket(data._id, { ...data, status: 'UPDATED@CLICK' })
+            delete: (id: string) => this.props.deleteTicket(id),
+            edit: (id: string) => {
+                // Redirect to ticket form, get the selected ticket, then update it
+            }
         };
-        this.state.ticketAction && handler[this.state.ticketAction](data);
-        this.setState({
-            ...this.state,
-            ticketAction: null
-        });
+        return handler[action] && handler[action](id);
     }
 
-    getActionBtns = () => {
-        return <div>
-            {userPermissions.delete ? <Delete onClick={this.deleteTicket} /> : null}
-            {userPermissions.edit ? <Edit onClick={this.editTicket} /> : null}
-        </div>;
+    getActionBtns = ({ data }) => {
+        return (<div>
+            {userPermissions.delete ? <Delete id={data._id + 'delete'} onClick={this.ticketAction('delete')} /> : null}
+            {userPermissions.edit ? <Edit id={data._id + 'edit'} onClick={this.ticketAction('edit')} /> : null}
+        </div>);
     };
 
     render() {
@@ -89,8 +71,7 @@ class TicketsList extends Component<TicketsListProps, TicketsListState> {
                             { headerName: "Description", field: "description" },
                             {
                                 headerName: "Actions", field: "actions",
-                                cellRendererFramework: this.getActionBtns,
-                                onCellClicked: this.onActionCellClick
+                                cellRendererFramework: this.getActionBtns
                             }
                         ],
                         onFirstDataRendered(params) {
@@ -109,7 +90,6 @@ export const mapStateToProps = (state: State) => {
 };
 export const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        editTicket: (id: string, data: any) => dispatch(editTicket(id, data)),
         deleteTicket: (id: string) => dispatch(deleteTicket(id))
     }
 }

@@ -2,7 +2,7 @@ import actionTypes from './actionTypes';
 import { createTicket, deleteTicket, editTicket } from './ticketAction';
 import { Status } from '../components/Ticket/Ticket';
 
-describe('ticketActions works properly', () => {
+describe('ticketActions', () => {
     const ticket = {
         id: 12,
         status: Status.OPEN,

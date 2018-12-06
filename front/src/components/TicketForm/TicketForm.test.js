@@ -12,18 +12,6 @@ describe('<TicketForm />', () => {
     it('handles correctly onChange', () => {
         const createTicket = shallow(<TicketForm.WrappedComponent />);
 
-        // ID
-        const idValue = 5;
-        const idEvent = {
-            currentTarget: {
-                value: idValue.toString(),
-                valueAsNumber: idValue,
-                type: "number"
-            }
-        };
-        createTicket.find("#id").simulate('change', idEvent);
-        expect(createTicket.state().id).toEqual(idValue);
-
         // title
         const titleValue = "Title text";
         const titleEvent = {
@@ -51,7 +39,6 @@ describe('<TicketForm />', () => {
 
     it('correctly mapDispatchToProps', () => {
         const ticket = {
-            id: 6,
             title: 'bla',
             description: 'bla bla bla',
             status: 'OPEN'
@@ -74,7 +61,6 @@ describe('<TicketForm />', () => {
 
     it('correctly mapStateToProps', () => {
         const ticket = {
-            id: 6,
             title: 'bla',
             description: 'bla bla bla',
             status: 'OPEN'
@@ -89,7 +75,6 @@ describe('<TicketForm />', () => {
         const props = { ...mapDispatchToProps(dispatch), ...mapStateToProps({ tickets: [] }) };
         const createTicketWrap = shallow(<TicketForm.WrappedComponent {...props} />);
         const ticket = {
-            id: 6,
             title: 'bla',
             description: 'bla bla bla',
             status: 'OPEN'
@@ -97,13 +82,11 @@ describe('<TicketForm />', () => {
         expect(createTicketWrap.find('form')).toHaveLength(1);
         createTicketWrap.setState({
             ...createTicketWrap.state,
-            id: 6,
             title: 'bla',
             description: 'bla bla bla'
         });
         createTicketWrap.find('form').simulate('submit', event);
         expect(createTicketWrap.state()).toEqual({
-            id: ticket.id + 1,
             title: '',
             description: '',
             status: 'OPEN'

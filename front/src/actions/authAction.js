@@ -19,9 +19,14 @@ export type User = {
 };
 
 export const registerUser = (user: User, history: RouterHistory) => (dispatch: Dispatch) => {
+    dispatch({ type: actionTypes.REGISTER_USER });
     axios.post('/users/register', user)
-        .then(res => history.push('/login'))
+        .then(res => {
+            dispatch({ type: actionTypes.REGISTER_USER_SUCCESS });
+            loginUser(user, history)(dispatch);
+        })
         .catch(err => {
+            dispatch({ type: actionTypes.REGISTER_USER_FAIL });
             dispatch({
                 type: actionTypes.GET_ERRORS,
                 payload: err
@@ -37,7 +42,6 @@ export const loginUser = (user: UserLogin, history: RouterHistory) => (dispatch:
             setAuthToken(token);
             const decoded: User = jwtDecode(token);
             dispatch(setCurrentUser(decoded));
-            console.log("@@@", history);
             history.push('/');
         })
         .catch(err => {

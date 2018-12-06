@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Login renders correctly 1`] = `
+exports[`Register renders correctly 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Login />,
+  Symbol(enzyme.__unrendered__): <Register />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -19,8 +19,18 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <h2>
-          Login
+          Register
         </h2>,
+        <TextField
+          id="name"
+          label="full name"
+          onChange={[Function]}
+          required={true}
+          select={false}
+          type="name"
+          value=""
+          variant="standard"
+        />,
         <TextField
           id="email"
           label="email"
@@ -41,12 +51,22 @@ ShallowWrapper {
           value=""
           variant="standard"
         />,
+        <TextField
+          id="password_confirm"
+          label="password confirm"
+          onChange={[Function]}
+          required={true}
+          select={false}
+          type="password"
+          value=""
+          variant="standard"
+        />,
         <WithStyles(Button)
           id="submit"
           type="submit"
           variant="contained"
         >
-          LOGIN
+          REGISTER
         </WithStyles(Button)>,
       ],
       "className": "login",
@@ -59,11 +79,29 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": "Login",
+          "children": "Register",
         },
         "ref": null,
-        "rendered": "Login",
+        "rendered": "Register",
         "type": "h2",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "id": "name",
+          "label": "full name",
+          "onChange": [Function],
+          "required": true,
+          "select": false,
+          "type": "name",
+          "value": "",
+          "variant": "standard",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
       },
       Object {
         "instance": null,
@@ -106,13 +144,31 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": "LOGIN",
+          "id": "password_confirm",
+          "label": "password confirm",
+          "onChange": [Function],
+          "required": true,
+          "select": false,
+          "type": "password",
+          "value": "",
+          "variant": "standard",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "REGISTER",
           "id": "submit",
           "type": "submit",
           "variant": "contained",
         },
         "ref": null,
-        "rendered": "LOGIN",
+        "rendered": "REGISTER",
         "type": [Function],
       },
     ],
@@ -126,8 +182,18 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <h2>
-            Login
+            Register
           </h2>,
+          <TextField
+            id="name"
+            label="full name"
+            onChange={[Function]}
+            required={true}
+            select={false}
+            type="name"
+            value=""
+            variant="standard"
+          />,
           <TextField
             id="email"
             label="email"
@@ -148,12 +214,22 @@ ShallowWrapper {
             value=""
             variant="standard"
           />,
+          <TextField
+            id="password_confirm"
+            label="password confirm"
+            onChange={[Function]}
+            required={true}
+            select={false}
+            type="password"
+            value=""
+            variant="standard"
+          />,
           <WithStyles(Button)
             id="submit"
             type="submit"
             variant="contained"
           >
-            LOGIN
+            REGISTER
           </WithStyles(Button)>,
         ],
         "className": "login",
@@ -166,11 +242,29 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": "Login",
+            "children": "Register",
           },
           "ref": null,
-          "rendered": "Login",
+          "rendered": "Register",
           "type": "h2",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "id": "name",
+            "label": "full name",
+            "onChange": [Function],
+            "required": true,
+            "select": false,
+            "type": "name",
+            "value": "",
+            "variant": "standard",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
         },
         Object {
           "instance": null,
@@ -213,13 +307,31 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "LOGIN",
+            "id": "password_confirm",
+            "label": "password confirm",
+            "onChange": [Function],
+            "required": true,
+            "select": false,
+            "type": "password",
+            "value": "",
+            "variant": "standard",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "REGISTER",
             "id": "submit",
             "type": "submit",
             "variant": "contained",
           },
           "ref": null,
-          "rendered": "LOGIN",
+          "rendered": "REGISTER",
           "type": [Function],
         },
       ],

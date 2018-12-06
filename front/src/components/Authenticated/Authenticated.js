@@ -42,12 +42,12 @@ class Authenticated extends Component<Props, State> {
     }
 }
 
-const mapStateToProps = (state: State) => {
+export const mapStateToProps = (state: State) => {
     return {
         auth: state.auth
     };
 };
-const mapDispatchToProps = (dispatch: Dispatch) => {
+export const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         getUser: (history: RouterHistory) => getUser(history)(dispatch)
     };

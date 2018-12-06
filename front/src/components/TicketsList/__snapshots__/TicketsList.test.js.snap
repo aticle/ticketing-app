@@ -22,10 +22,6 @@ ShallowWrapper {
           Object {
             "columnDefs": Array [
               Object {
-                "field": "id",
-                "headerName": "ID",
-              },
-              Object {
                 "field": "status",
                 "headerName": "Status",
               },
@@ -41,7 +37,6 @@ ShallowWrapper {
                 "cellRendererFramework": [Function],
                 "field": "actions",
                 "headerName": "Actions",
-                "onCellClicked": [Function],
               },
             ],
             "onFirstDataRendered": [Function],
@@ -64,10 +59,6 @@ ShallowWrapper {
         "gridOptions": Object {
           "columnDefs": Array [
             Object {
-              "field": "id",
-              "headerName": "ID",
-            },
-            Object {
               "field": "status",
               "headerName": "Status",
             },
@@ -83,7 +74,6 @@ ShallowWrapper {
               "cellRendererFramework": [Function],
               "field": "actions",
               "headerName": "Actions",
-              "onCellClicked": [Function],
             },
           ],
           "onFirstDataRendered": [Function],
@@ -108,10 +98,6 @@ ShallowWrapper {
             Object {
               "columnDefs": Array [
                 Object {
-                  "field": "id",
-                  "headerName": "ID",
-                },
-                Object {
                   "field": "status",
                   "headerName": "Status",
                 },
@@ -127,7 +113,6 @@ ShallowWrapper {
                   "cellRendererFramework": [Function],
                   "field": "actions",
                   "headerName": "Actions",
-                  "onCellClicked": [Function],
                 },
               ],
               "onFirstDataRendered": [Function],
@@ -150,10 +135,6 @@ ShallowWrapper {
           "gridOptions": Object {
             "columnDefs": Array [
               Object {
-                "field": "id",
-                "headerName": "ID",
-              },
-              Object {
                 "field": "status",
                 "headerName": "Status",
               },
@@ -169,7 +150,6 @@ ShallowWrapper {
                 "cellRendererFramework": [Function],
                 "field": "actions",
                 "headerName": "Actions",
-                "onCellClicked": [Function],
               },
             ],
             "onFirstDataRendered": [Function],

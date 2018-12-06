@@ -58,6 +58,7 @@ class MenuAppBar extends Component<Props, MenuState> {
         const authLinks = (
             <div>
                 <MenuItem
+                    id="logout"
                     onClick={e => { this.handleClose(e) && logoutUser(history) }}
                 >Log Out</MenuItem>
 
@@ -110,11 +111,15 @@ class MenuAppBar extends Component<Props, MenuState> {
     }
 }
 
-const mapStateToProps = (state: State) => ({
-    auth: state.auth
-})
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    logoutUser: (history: RouterHistory) => logoutUser(history)(dispatch)
-})
+export const mapStateToProps = (state: State) => {
+    return {
+        auth: state.auth
+    }
+}
+export const mapDispatchToProps = (dispatch: Dispatch) => {
+    return {
+        logoutUser: (history: RouterHistory) => logoutUser(history)(dispatch)
+    }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MenuAppBar));

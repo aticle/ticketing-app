@@ -1,5 +1,7 @@
 // @flow
 import actionTypes from './actionTypes';
+import axios from 'axios';
+import { type Dispatch } from 'react-redux';
 import { type TicketState } from '../components/Ticket/Ticket';
 
 export type TicketAction = {
@@ -57,6 +59,29 @@ export const editTicket = (id: string, ticket: TicketState): TicketAction => {
             }
         }
     };
+};
+
+export const getTicket = (id: string) => (dispatch: Dispatch) => {
+    // return {
+    //     type: actionTypes.EDIT_TICKET,
+    //     payload: {
+    //         request: {
+    //             method: 'get',
+    //             url: `/tickets/find/${id}`
+    //         }
+    //     }
+    // };
+    axios.get(`/tickets/find/${id}`)
+        .then(res => {
+            console.log("###", res);
+            return res.data;
+        })
+        .catch(err => {
+            dispatch({
+                type: actionTypes.GET_ERRORS,
+                payload: err
+            });
+        });
 };
 
 export const getAllTickets = (): TicketAction => {

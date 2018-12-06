@@ -1,5 +1,6 @@
 import isEmpty from '../validation/is-empty';
 import actionTypes from '../actions/actionTypes';
+import { type User } from '../actions/authAction';
 
 type Action = {
     type: string,
@@ -8,10 +9,10 @@ type Action = {
 
 export type AuthState = {
     isAuthenticated: boolean,
-    user: Object
+    user: User
 }
 
-const initialState: AuthState = {
+export const initialState: AuthState = {
     isAuthenticated: undefined,
     user: undefined
 }

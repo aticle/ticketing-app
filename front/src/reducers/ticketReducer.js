@@ -21,15 +21,17 @@ export default (state: Array<TicketState> = [], action: TicketAction) => {
                 const id = url.substr(idPos);
                 return state.filter(ticket => ticket._id !== id);
             },
-        [actionTypes.EDIT_TICKET_SUCCESS]: () => {
-            const data = action.payload.config ? action.payload.config.data : '{}';
-            const updatedTicket = JSON.parse(data);
-            return state.map(ticket => {
-                if (ticket._id === updatedTicket._id) {
-                    return Object.assign({}, ticket, updatedTicket)
-                } else return ticket;
-            })
-        }
+        [actionTypes.EDIT_TICKET_SUCCESS]:
+            () => {
+                const data = action.payload.config ? action.payload.config.data : '{}';
+                const updatedTicket = JSON.parse(data);
+                return state.map(ticket => {
+                    if (ticket._id === updatedTicket._id) {
+                        return Object.assign({}, ticket, updatedTicket)
+                    }
+                    return ticket;
+                })
+            }
 
     };
 
