@@ -32,12 +32,6 @@ ShallowWrapper {
         </h3>,
         <p>
           <b>
-            ID: 
-          </b>
-          0
-        </p>,
-        <p>
-          <b>
             Status: 
           </b>
           OPEN
@@ -115,35 +109,6 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <b>
-              ID: 
-            </b>,
-            0,
-          ],
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "ID: ",
-            },
-            "ref": null,
-            "rendered": "ID: ",
-            "type": "b",
-          },
-          0,
-        ],
-        "type": "p",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": Array [
-            <b>
               Status: 
             </b>,
             "OPEN",
@@ -188,12 +153,6 @@ ShallowWrapper {
               
             </p>
           </h3>,
-          <p>
-            <b>
-              ID: 
-            </b>
-            0
-          </p>,
           <p>
             <b>
               Status: 
@@ -265,35 +224,6 @@ ShallowWrapper {
             },
           ],
           "type": "h3",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              <b>
-                ID: 
-              </b>,
-              0,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": "ID: ",
-              },
-              "ref": null,
-              "rendered": "ID: ",
-              "type": "b",
-            },
-            0,
-          ],
-          "type": "p",
         },
         Object {
           "instance": null,

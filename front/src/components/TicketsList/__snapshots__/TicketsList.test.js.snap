@@ -18,12 +18,46 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": <AgGridReact
-        columnDefs={
-          Array [
-            Object {
-              "field": "id",
-              "headerName": "ID",
-            },
+        gridOptions={
+          Object {
+            "columnDefs": Array [
+              Object {
+                "field": "status",
+                "headerName": "Status",
+              },
+              Object {
+                "field": "title",
+                "headerName": "Title",
+              },
+              Object {
+                "field": "description",
+                "headerName": "Description",
+              },
+              Object {
+                "cellRendererFramework": [Function],
+                "field": "actions",
+                "headerName": "Actions",
+              },
+            ],
+            "onFirstDataRendered": [Function],
+          }
+        }
+        suppressHorizontalScroll={true}
+      />,
+      "className": "ag-theme-balham",
+      "style": Object {
+        "height": "500px",
+        "width": "500px",
+      },
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "gridOptions": Object {
+          "columnDefs": Array [
             Object {
               "field": "status",
               "headerName": "Status",
@@ -36,40 +70,16 @@ ShallowWrapper {
               "field": "description",
               "headerName": "Description",
             },
-          ]
-        }
-      />,
-      "className": "ag-theme-balham",
-      "style": Object {
-        "height": "300px",
-        "width": "500px",
-      },
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "columnDefs": Array [
-          Object {
-            "field": "id",
-            "headerName": "ID",
-          },
-          Object {
-            "field": "status",
-            "headerName": "Status",
-          },
-          Object {
-            "field": "title",
-            "headerName": "Title",
-          },
-          Object {
-            "field": "description",
-            "headerName": "Description",
-          },
-        ],
+            Object {
+              "cellRendererFramework": [Function],
+              "field": "actions",
+              "headerName": "Actions",
+            },
+          ],
+          "onFirstDataRendered": [Function],
+        },
         "rowData": undefined,
+        "suppressHorizontalScroll": true,
       },
       "ref": null,
       "rendered": null,
@@ -84,12 +94,46 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": <AgGridReact
-          columnDefs={
-            Array [
-              Object {
-                "field": "id",
-                "headerName": "ID",
-              },
+          gridOptions={
+            Object {
+              "columnDefs": Array [
+                Object {
+                  "field": "status",
+                  "headerName": "Status",
+                },
+                Object {
+                  "field": "title",
+                  "headerName": "Title",
+                },
+                Object {
+                  "field": "description",
+                  "headerName": "Description",
+                },
+                Object {
+                  "cellRendererFramework": [Function],
+                  "field": "actions",
+                  "headerName": "Actions",
+                },
+              ],
+              "onFirstDataRendered": [Function],
+            }
+          }
+          suppressHorizontalScroll={true}
+        />,
+        "className": "ag-theme-balham",
+        "style": Object {
+          "height": "500px",
+          "width": "500px",
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "gridOptions": Object {
+            "columnDefs": Array [
               Object {
                 "field": "status",
                 "headerName": "Status",
@@ -102,40 +146,16 @@ ShallowWrapper {
                 "field": "description",
                 "headerName": "Description",
               },
-            ]
-          }
-        />,
-        "className": "ag-theme-balham",
-        "style": Object {
-          "height": "300px",
-          "width": "500px",
-        },
-      },
-      "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "columnDefs": Array [
-            Object {
-              "field": "id",
-              "headerName": "ID",
-            },
-            Object {
-              "field": "status",
-              "headerName": "Status",
-            },
-            Object {
-              "field": "title",
-              "headerName": "Title",
-            },
-            Object {
-              "field": "description",
-              "headerName": "Description",
-            },
-          ],
+              Object {
+                "cellRendererFramework": [Function],
+                "field": "actions",
+                "headerName": "Actions",
+              },
+            ],
+            "onFirstDataRendered": [Function],
+          },
           "rowData": undefined,
+          "suppressHorizontalScroll": true,
         },
         "ref": null,
         "rendered": null,

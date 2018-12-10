@@ -1,12 +1,12 @@
 const Ticket = require('../models/ticket');
 
 // Get ticket
-module.exports = (req, res) => {
-    Ticket.find(req.params, (err, tickets) => {
-        if (err) {
-            res.json("Something went wrong");
-            return;
-        }
-        res.json(tickets);
-    });
+module.exports = async (req, res) => {
+    try {
+        const ticket = await Ticket.find(req.params);
+        res.status(200).json(ticket);
+    } catch (err) {
+        console.error(err);
+        res.status(500);
+    }
 };

@@ -1,13 +1,13 @@
 const Ticket = require('../models/ticket');
 
 // Create ticket
-module.exports = (req, res) => {
-    const ticket = new Ticket(req.body);
-    ticket.save((err, ticket) => {
-        if (err) {
-            res.json("Something went wrong");
-            return;
-        }
-        res.json("Ticket successfully created");
-    });
+module.exports = async (req, res) => {
+    const newTicket = new Ticket(req.body);
+
+    try {
+        const ticket = await newTicket.save();
+        res.status(200).json(ticket);
+    } catch (err) {
+        res.status(400).json("Something went wrong");
+    }
 };

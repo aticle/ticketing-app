@@ -1,5 +1,7 @@
 // @flow
 import actionTypes from './actionTypes';
+import axios from 'axios';
+import { type Dispatch } from 'react-redux';
 import { type TicketState } from '../components/Ticket/Ticket';
 
 export type TicketAction = {
@@ -7,7 +9,7 @@ export type TicketAction = {
     payload: {
         ticket?: TicketState,
         id?: number,
-        data?: Array<TicketState>,
+        data?: Array<TicketState> | TicketState,
         request?: {
             method: string,
             url?: string,
@@ -33,30 +35,66 @@ export const createTicket = (ticket: TicketState): TicketAction => {
     };
 };
 
-export const deleteTicket = (id: number): TicketAction => {
+export const deleteTicket = (_id: string): TicketAction => {
     return {
         type: actionTypes.DELETE_TICKET,
         payload: {
             request: {
                 method: 'delete',
-                url: `/tickets/delete/${id}`
+                url: `/tickets/delete/${_id}`
             }
         }
     };
 };
 
 
-export const editTicket = (_id: string, ticket: TicketState): TicketAction => {
+export const editTicket = (id: string, ticket: TicketState): TicketAction => {
     return {
         type: actionTypes.EDIT_TICKET,
         payload: {
             request: {
                 method: 'put',
-                url: `/tickets/update/${_id}`,
+                url: `/tickets/update/${id}`,
                 data: ticket
             }
         }
     };
+};
+
+const getTticketRequest = async (id: string): Promise<TicketState> => {
+    const resp = await axios.get(`/tickets/find/${id}`);
+    return resp.data;
+}
+
+export const getTicket = (id: string) => async (dispatch: Dispatch) => {
+    // return {
+    //     type: actionTypes.EDIT_TICKET,
+    //     payload: {
+    //         request: {
+    //             method: 'get',
+    //             url: `/tickets/find/${id}`
+    //         }
+    //     }
+    // };
+    // axios.get(`/tickets/find/${id}`)
+    //     .then(res => {
+    //         return res.data;
+    //     })
+    //     .catch(err => {
+    // dispatch({
+    //     type: actionTypes.GET_ERRORS,
+    //     payload: err
+    // });
+    //     });
+
+    try {
+        return await getTticketRequest(id);
+    } catch (err) {
+        dispatch({
+            type: actionTypes.GET_ERRORS,
+            payload: err
+        });
+    }
 };
 
 export const getAllTickets = (): TicketAction => {

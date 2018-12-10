@@ -1,18 +1,25 @@
 // @flow
 import React from 'react';
-
-import './App.css';
-
+import { Route, Switch } from "react-router-dom";
+import TicketForm from './components/TicketForm/TicketForm';
+import Login from './components/Login/Login';
+import Register from './components/Register/Register';
 import MenuAppBar from './components/MenuAppBar/MenuAppBar';
 import TicketsList from './components/TicketsList/TicketsList';
-import TicketForm from './components/TicketForm/TicketForm';
+import Authenticated from './components/Authenticated/Authenticated';
 
 const App = () => (
-  <div className="App">
-    <MenuAppBar></MenuAppBar>
-    <TicketForm ticket={undefined} />
-    <TicketsList />
-  </div>
+    <div className="App">
+        <MenuAppBar />
+        <Switch>
+            <Route path="/login" exact component={Login} />
+            <Route path="/register" exact component={Register} />
+            <Authenticated>
+                <Route path="/" exact component={TicketsList} />
+                <Route path="/create" exact component={TicketForm} />
+            </Authenticated>
+        </Switch>
+    </div>
 );
 
 export default App;

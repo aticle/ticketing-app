@@ -1,0 +1,18 @@
+.login {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login>div {
+    margin: 5px 0;
+    display: flex;
+    width: 300px;
+    max-width: 100%;
+    text-align: left;
+}
+
+.login button[type="submit"] {
+    margin-top: 65px;
+}
