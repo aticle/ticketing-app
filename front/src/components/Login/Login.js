@@ -18,20 +18,29 @@ type State = {
 };
 
 class Login extends Component<Props, State> {
+    constructor(props) {
+        super(props);
+
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange = function (name: string) {
+        return (function (e: SyntheticEvent<HTMLInputElement>) {
+            const value = e.currentTarget.value;
+
+            this.setState({
+                ...this.state,
+                [name]: value
+            });
+        }).bind(this);
+    }
+
     state = {
         email: '',
         password: '',
         errors: {}
     };
 
-    handleChange = (name: string) => (e: SyntheticEvent<HTMLInputElement>) => {
-        const value = e.currentTarget.value;
-
-        this.setState({
-            ...this.state,
-            [name]: value
-        });
-    }
 
     handleSubmit = (e: Event) => {
         e.preventDefault();
@@ -75,16 +84,12 @@ class Login extends Component<Props, State> {
     };
 }
 
-export const mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        loginUser: (user: any, history: RouterHistory) => loginUser(user, history)(dispatch)
-    }
-};
+export const mapDispatchToProps = (dispatch: Dispatch) => ({
+    loginUser: (user: any, history: RouterHistory) => loginUser(user, history)(dispatch)
+})
 
-export const mapStateToProps = (state: State) => {
-    return {
-        errors: state.errors
-    }
-};
+export const mapStateToProps = (state: State) => ({
+    errors: state.errors
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login));

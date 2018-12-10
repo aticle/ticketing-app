@@ -97,16 +97,12 @@ class Register extends Component<Props, State> {
     };
 };
 
-export const mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        registerUser: (user: User, history: RouterHistory) => registerUser(user, history)(dispatch)
-    }
-};
+export const mapDispatchToProps = (dispatch: Dispatch) => ({
+    registerUser: (user: User, history: RouterHistory) => registerUser(user, history)(dispatch)
+})
 
-export const mapStateToProps = (state: State) => {
-    return {
-        errors: state.errors
-    }
-};
+export const mapStateToProps = (state: State) => ({
+    errors: state.errors
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Register));

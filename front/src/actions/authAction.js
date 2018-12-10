@@ -4,7 +4,7 @@ import { RouterHistory } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import actionTypes from './actionTypes';
 import setAuthToken from '../setAuthToken';
-import { getJwt, setJwt, removeJwt } from '../helpers/jwt'
+import { getJwt, setJwt, removeJwt } from '../helpers/jwt';
 
 export type UserLogin = {
     email: string,
@@ -18,38 +18,39 @@ export type User = {
     token?: string
 };
 
-export const registerUser = (user: User, history: RouterHistory) => (dispatch: Dispatch) => {
-    dispatch({ type: actionTypes.REGISTER_USER });
-    axios.post('/users/register', user)
-        .then(res => {
-            dispatch({ type: actionTypes.REGISTER_USER_SUCCESS });
-            loginUser(user, history)(dispatch);
-        })
-        .catch(err => {
-            dispatch({ type: actionTypes.REGISTER_USER_FAIL });
-            dispatch({
-                type: actionTypes.GET_ERRORS,
-                payload: err
-            });
+export const registerUser = (user: User, history: RouterHistory) => async (dispatch: Dispatch) => {
+    try {
+        await axios.post('/users/register', user);
+        dispatch({ type: actionTypes.REGISTER_USER_SUCCESS });
+        loginUser(user, history)(dispatch);
+    } catch (err) {
+        dispatch({ type: actionTypes.REGISTER_USER_FAIL });
+        dispatch({
+            type: actionTypes.GET_ERRORS,
+            payload: err
         });
+    }
 }
 
-export const loginUser = (user: UserLogin, history: RouterHistory) => (dispatch: Dispatch) => {
-    axios.post('/users/login', user)
-        .then(res => {
-            const { token } = res.data;
-            setJwt(token);
-            setAuthToken(token);
-            const decoded: User = jwtDecode(token);
-            dispatch(setCurrentUser(decoded));
-            history.push('/');
-        })
-        .catch(err => {
-            dispatch({
-                type: actionTypes.GET_ERRORS,
-                payload: err
-            });
+const loginRequest = async (user: UserLogin) => {
+    const resp = await axios.post('/users/login', user);
+    return resp.data;
+}
+
+export const loginUser = (user: UserLogin, history: RouterHistory) => async (dispatch: Dispatch) => {
+    try {
+        const { token } = await loginRequest(user);
+        const decoded: User = jwtDecode(token);
+        setJwt(token);
+        setAuthToken(token);
+        dispatch(setCurrentUser(decoded));
+        history.push('/');
+    } catch (err) {
+        dispatch({
+            type: actionTypes.GET_ERRORS,
+            payload: err
         });
+    }
 }
 
 export const logoutUser = (history: RouterHistory) => (dispatch: Diaspatch) => {
@@ -59,16 +60,20 @@ export const logoutUser = (history: RouterHistory) => (dispatch: Diaspatch) => {
     history.push('/login');
 }
 
-export const getUser = (history: RouterHistory) => (dispatch: Diaspatch) => {
-    axios.get('/users/me', { headers: { Authorization: getJwt() } })
-        .then(res => {
-            dispatch(setCurrentUser(res.data));
-            return res.data;
-        })
-        .catch(err => {
-            removeJwt();
-            history.push('/login');
-        });
+const getUserRequest = async () => {
+    const resp = await axios.get('/users/me', { headers: { Authorization: getJwt() } });
+    return resp.data;
+}
+
+export const getUser = (history: RouterHistory) => async (dispatch: Diaspatch) => {
+    try {
+        const user = await getUserRequest();
+        dispatch(setCurrentUser(user));
+        return user;
+    } catch (err) {
+        removeJwt();
+        history.push('/login');
+    }
 }
 
 export const setCurrentUser = (decoded: User) => {

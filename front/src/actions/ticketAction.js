@@ -61,7 +61,12 @@ export const editTicket = (id: string, ticket: TicketState): TicketAction => {
     };
 };
 
-export const getTicket = (id: string) => (dispatch: Dispatch) => {
+const getTticketRequest = async (id: string): Promise<TicketState> => {
+    const resp = await axios.get(`/tickets/find/${id}`);
+    return resp.data;
+}
+
+export const getTicket = (id: string) => async (dispatch: Dispatch) => {
     // return {
     //     type: actionTypes.EDIT_TICKET,
     //     payload: {
@@ -71,17 +76,25 @@ export const getTicket = (id: string) => (dispatch: Dispatch) => {
     //         }
     //     }
     // };
-    axios.get(`/tickets/find/${id}`)
-        .then(res => {
-            console.log("###", res);
-            return res.data;
-        })
-        .catch(err => {
-            dispatch({
-                type: actionTypes.GET_ERRORS,
-                payload: err
-            });
+    // axios.get(`/tickets/find/${id}`)
+    //     .then(res => {
+    //         return res.data;
+    //     })
+    //     .catch(err => {
+    // dispatch({
+    //     type: actionTypes.GET_ERRORS,
+    //     payload: err
+    // });
+    //     });
+
+    try {
+        return await getTticketRequest(id);
+    } catch (err) {
+        dispatch({
+            type: actionTypes.GET_ERRORS,
+            payload: err
         });
+    }
 };
 
 export const getAllTickets = (): TicketAction => {

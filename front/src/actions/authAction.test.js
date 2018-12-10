@@ -26,7 +26,6 @@ describe('authActions', () => {
 
         registerUser(regUser, history)(dispatch);
 
-        expect(dispatch.mock.calls[0][0]).toEqual({ type: actionTypes.REGISTER_USER });
         expect(jest.requireMock('axios').default.post).toHaveBeenCalledWith('/users/register', regUser);
 
         // then

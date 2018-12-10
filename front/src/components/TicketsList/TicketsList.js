@@ -1,10 +1,10 @@
 // @flow
 import React, { Component } from 'react';
 import { connect, type Dispatch } from 'react-redux';
-import { AgGridReact, CellClickedEvent } from 'ag-grid-react';
+import { AgGridReact } from 'ag-grid-react';
 import type TicketState from '../Ticket/Ticket';
 import type{ State } from '../../reducers';
-import { editTicket, deleteTicket } from '../../actions/ticketAction';
+import { deleteTicket } from '../../actions/ticketAction';
 import { Delete, Edit } from '@material-ui/icons';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';

@@ -72,14 +72,12 @@ class TicketForm extends Component<Props, TicketState> {
         );
     };
 }
-export const mapStateToProps = (state: State) => {
-    return {
-        tickets: state.tickets
-    }
-};
-export const mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        createTicket: (ticket: TicketState) => dispatch(createTicket(ticket))
-    }
-}
+export const mapStateToProps = (state: State) => ({
+    tickets: state.tickets
+})
+
+export const mapDispatchToProps = (dispatch: Dispatch) => ({
+    createTicket: (ticket: TicketState) => dispatch(createTicket(ticket))
+})
+
 export default connect(mapStateToProps, mapDispatchToProps)(TicketForm);

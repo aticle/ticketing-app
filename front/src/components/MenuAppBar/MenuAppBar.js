@@ -35,10 +35,14 @@ class MenuAppBar extends Component<Props, MenuState> {
         this.setState({ anchorEl: null });
     };
 
+    logout = (event: Event) => {
+        this.handleClose(event);
+        this.props.logoutUser(this.props.history);
+    }
+
     render() {
         const { anchorEl } = this.state;
         const { isAuthenticated } = this.props.auth;
-        const { logoutUser, history } = this.props;
 
         const guestLinks = (
             <div>
@@ -59,7 +63,7 @@ class MenuAppBar extends Component<Props, MenuState> {
             <div>
                 <MenuItem
                     id="logout"
-                    onClick={e => { this.handleClose(e) && logoutUser(history) }}
+                    onClick={this.logout}
                 >Log Out</MenuItem>
 
                 <Link to="/">
@@ -111,15 +115,12 @@ class MenuAppBar extends Component<Props, MenuState> {
     }
 }
 
-export const mapStateToProps = (state: State) => {
-    return {
-        auth: state.auth
-    }
-}
-export const mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        logoutUser: (history: RouterHistory) => logoutUser(history)(dispatch)
-    }
-}
+export const mapStateToProps = (state: State) => ({
+    auth: state.auth
+})
+
+export const mapDispatchToProps = (dispatch: Dispatch) => ({
+    logoutUser: (history: RouterHistory) => logoutUser(history)(dispatch)
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MenuAppBar));
